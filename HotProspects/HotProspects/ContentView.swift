@@ -1,30 +1,15 @@
 import SwiftUI
+import SamplePackage
 
 struct ContentView: View {
-    @State private var selectedTab = 0
-
+    let possibleNumbers = Array(1...60)
+    
+    var results: String {
+        let selected = possibleNumbers.random(7).sorted()
+        return selected.map(String.init).joined(separator: ", ")
+    }
     var body: some View {
-        TabView(selection: $selectedTab) {
-            Text("Tab 1")
-                .onTapGesture {
-                    self.selectedTab = 1
-                }
-                .tabItem {
-                    Image(systemName: "star")
-                    Text("One")
-                }
-                .tag(0)
-
-            Text("Tab 2")
-                .onTapGesture {
-                    self.selectedTab = 0
-                }
-                .tabItem {
-                    Image(systemName: "star.fill")
-                    Text("Two")
-                }
-                .tag(1)
-        }
+        Text(results)
     }
 }
 

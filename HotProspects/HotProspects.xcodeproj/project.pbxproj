@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		57444F4823A08C1C00D5790F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57444F4723A08C1C00D5790F /* Preview Assets.xcassets */; };
 		57444F4B23A08C1C00D5790F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57444F4923A08C1C00D5790F /* LaunchScreen.storyboard */; };
 		57444F5523A08D6A00D5790F /* TutorialCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57444F5423A08D6A00D5790F /* TutorialCode.swift */; };
+		578A87AA23A33BC00099B214 /* SamplePackage in Frameworks */ = {isa = PBXBuildFile; productRef = 578A87A923A33BC00099B214 /* SamplePackage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578A87AA23A33BC00099B214 /* SamplePackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +96,9 @@
 			dependencies = (
 			);
 			name = HotProspects;
+			packageProductDependencies = (
+				578A87A923A33BC00099B214 /* SamplePackage */,
+			);
 			productName = HotProspects;
 			productReference = 57444F3B23A08C1A00D5790F /* HotProspects.app */;
 			productType = "com.apple.product-type.application";
@@ -122,6 +127,9 @@
 				Base,
 			);
 			mainGroup = 57444F3223A08C1A00D5790F;
+			packageReferences = (
+				578A87A823A33BC00099B214 /* XCRemoteSwiftPackageReference "SamplePackage" */,
+			);
 			productRefGroup = 57444F3C23A08C1A00D5790F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -346,6 +354,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		578A87A823A33BC00099B214 /* XCRemoteSwiftPackageReference "SamplePackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/SamplePackage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		578A87A923A33BC00099B214 /* SamplePackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 578A87A823A33BC00099B214 /* XCRemoteSwiftPackageReference "SamplePackage" */;
+			productName = SamplePackage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 57444F3323A08C1A00D5790F /* Project object */;
 }
