@@ -1,9 +1,10 @@
 import Foundation
 
 final class Prospect: Identifiable, Codable {
+    let created = Date()
+    var emailAddress = ""
     let id = UUID()
     var name = "Anon"
-    var emailAddress = ""
     fileprivate(set) var isContacted = false
 }
 
@@ -32,7 +33,7 @@ final class Prospects: ObservableObject {
         
         do {
             let data = try Data(contentsOf: filename)
-            people = try JSONDecoder().decode([Prospect].self, from: data)
+            people = try JSONDecoder().decode([Prospect].self, from: data).sorted { $0.name > $1.name }
         } catch {
             print("Error occurred loading data.")
         }
@@ -45,6 +46,14 @@ final class Prospects: ObservableObject {
             try data.write(to: filename, options: [.atomicWrite, .completeFileProtection])
         } catch {
             print("Error occurred saving data.")
+        }
+    }
+    
+    func sort(by title: String) {
+        if title == "name" {
+            self.people.sort { $0.name > $1.name }
+        } else {
+            self.people.sort { $0.created > $1.created }
         }
     }
     

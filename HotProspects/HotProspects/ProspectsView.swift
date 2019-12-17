@@ -9,6 +9,7 @@ struct ProspectsView: View {
     
     @EnvironmentObject var prospects: Prospects
     @State private var isShowingScanner = false
+    @State private var sortTitle = "name"
     
     let filter: FilterType
     
@@ -38,15 +39,17 @@ struct ProspectsView: View {
         NavigationView {
             List {
                 ForEach(filteredProspects) { prospect in
-                    VStack(alignment: .leading) {
-                        Text(prospect.name)
-                            .font(.headline)
-                        Text(prospect.emailAddress)
-                            .foregroundColor(.secondary)
-                        
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(prospect.name)
+                                .font(.headline)
+                            Text(prospect.emailAddress)
+                                .foregroundColor(.secondary)
+                        }
+                    
                         if prospect.isContacted {
                             Image(systemName: "checkmark.circle.fill")
-                        }
+                        } 
                     }
                     .contextMenu {
                         Button(prospect.isContacted ? "Mark Uncontacted" : "Mark Contacted") {
@@ -61,7 +64,12 @@ struct ProspectsView: View {
                 }
             }
             .navigationBarTitle(title)
-            .navigationBarItems(trailing: Button(action: {
+            .navigationBarItems(leading: Button(action: {
+                self.toggleFilter()
+            }) {
+                Text("Sort by: \(sortTitle)")
+            },
+            trailing: Button(action: {
                 self.isShowingScanner = true
             }) {
                 Image(systemName: "qrcode.viewfinder")
@@ -107,6 +115,11 @@ struct ProspectsView: View {
                 }
             }
         }
+    }
+    
+    func toggleFilter() {
+        sortTitle = sortTitle == "name" ? "recents" : "name"
+        prospects.sort(by: sortTitle)
     }
     
     func handleScan(result: Result<String, CodeScannerView.ScanError>) {
