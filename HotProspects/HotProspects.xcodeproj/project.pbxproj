@@ -31,8 +31,8 @@
 		57444F4A23A08C1C00D5790F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57444F4C23A08C1C00D5790F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57444F5423A08D6A00D5790F /* TutorialCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCode.swift; sourceTree = "<group>"; };
-		578A87AB23A7DC390099B214 /* ProspectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProspectsView.swift; path = HotProspects/ProspectsView.swift; sourceTree = "<group>"; };
-		578A87AD23A7DC740099B214 /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MeView.swift; path = HotProspects/MeView.swift; sourceTree = "<group>"; };
+		578A87AB23A7DC390099B214 /* ProspectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProspectsView.swift; sourceTree = "<group>"; };
+		578A87AD23A7DC740099B214 /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
 		578A87AF23A7DDE50099B214 /* Prospect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prospect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,10 +52,6 @@
 		57444F3223A08C1A00D5790F = {
 			isa = PBXGroup;
 			children = (
-				57444F5423A08D6A00D5790F /* TutorialCode.swift */,
-				578A87AB23A7DC390099B214 /* ProspectsView.swift */,
-				578A87AD23A7DC740099B214 /* MeView.swift */,
-				578A87AF23A7DDE50099B214 /* Prospect.swift */,
 				57444F3D23A08C1A00D5790F /* HotProspects */,
 				57444F3C23A08C1A00D5790F /* Products */,
 			);
@@ -72,6 +68,10 @@
 		57444F3D23A08C1A00D5790F /* HotProspects */ = {
 			isa = PBXGroup;
 			children = (
+				57444F5423A08D6A00D5790F /* TutorialCode.swift */,
+				578A87AB23A7DC390099B214 /* ProspectsView.swift */,
+				578A87AD23A7DC740099B214 /* MeView.swift */,
+				578A87AF23A7DDE50099B214 /* Prospect.swift */,
 				57444F3E23A08C1A00D5790F /* AppDelegate.swift */,
 				57444F4023A08C1A00D5790F /* SceneDelegate.swift */,
 				57444F4223A08C1A00D5790F /* ContentView.swift */,
