@@ -14,6 +14,8 @@
 		5710544C23A9C817005EF0BF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5710544B23A9C817005EF0BF /* Preview Assets.xcassets */; };
 		5710544F23A9C817005EF0BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5710544D23A9C817005EF0BF /* LaunchScreen.storyboard */; };
 		5710545723A9CC9C005EF0BF /* TutorialCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5710545623A9CC9C005EF0BF /* TutorialCode.swift */; };
+		57FD02FB23AC696D00CBE900 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FD02FA23AC696D00CBE900 /* Card.swift */; };
+		57FD02FD23AC6CA300CBE900 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FD02FC23AC6CA300CBE900 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		5710544E23A9C817005EF0BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5710545023A9C817005EF0BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5710545623A9CC9C005EF0BF /* TutorialCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCode.swift; sourceTree = "<group>"; };
+		57FD02FA23AC696D00CBE900 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		57FD02FC23AC6CA300CBE900 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 		5710544123A9C815005EF0BF /* Flashzilla */ = {
 			isa = PBXGroup;
 			children = (
+				57FD02FA23AC696D00CBE900 /* Card.swift */,
+				57FD02FC23AC6CA300CBE900 /* CardView.swift */,
 				5710544223A9C815005EF0BF /* AppDelegate.swift */,
 				5710544423A9C815005EF0BF /* SceneDelegate.swift */,
 				5710544623A9C815005EF0BF /* ContentView.swift */,
@@ -151,7 +157,9 @@
 			files = (
 				5710545723A9CC9C005EF0BF /* TutorialCode.swift in Sources */,
 				5710544323A9C815005EF0BF /* AppDelegate.swift in Sources */,
+				57FD02FB23AC696D00CBE900 /* Card.swift in Sources */,
 				5710544523A9C815005EF0BF /* SceneDelegate.swift in Sources */,
+				57FD02FD23AC6CA300CBE900 /* CardView.swift in Sources */,
 				5710544723A9C815005EF0BF /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
