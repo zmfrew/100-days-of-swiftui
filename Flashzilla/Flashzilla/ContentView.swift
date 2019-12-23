@@ -3,8 +3,10 @@ import SwiftUI
 struct ContentView: View {
     @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
     @State private var cards = [Card]()
+    @State private var cardCount = 0
     @State private var isActive = true
     @State private var showingEditScreen = false
+    @State private var repeatCards = false
     @State private var timeRemaining = 100
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
@@ -32,6 +34,7 @@ struct ContentView: View {
                         CardView(card: self.cards[index]) {
                             withAnimation {
                                 self.removeCard(at: index)
+                                self.cardCount += 1
                             }
                         }
                         .stacked(at: index, in: self.cards.count)
@@ -40,6 +43,10 @@ struct ContentView: View {
                     }
                 }
                 .allowsHitTesting(timeRemaining > 0)
+                
+                if timeRemaining == 0 {
+                    Text("Time's up!\nYou studied \(cardCount) cards!")
+                }
                 
                 if cards.isEmpty {
                     Button("Start Again", action: resetCards)
@@ -52,6 +59,15 @@ struct ContentView: View {
             
            VStack {
                 HStack {
+                    Button(action: {
+                        self.repeatCards.toggle()
+                    }) {
+                        Image(systemName: self.repeatCards ? "checkmark.circle.fill" : "checkmark.circle")
+                        .padding()
+                        .background(Color.black.opacity(0.7))
+                        .clipShape(Circle())
+                    }
+                    
                     Spacer()
 
                     Button(action: {
@@ -63,8 +79,6 @@ struct ContentView: View {
                             .clipShape(Circle())
                     }
                 }
-
-                Spacer()
             }
             .foregroundColor(.white)
             .font(.largeTitle)
