@@ -31,7 +31,7 @@ struct ContentView: View {
             VStack {
                 Text("Finn")
                     .alignmentGuide(.midAccountAndName) { d in d[VerticalAlignment.center] }
-            }
+            } 
         }
     }
 }
