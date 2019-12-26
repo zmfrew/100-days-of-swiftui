@@ -12,34 +12,37 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            GeometryReader { geo in
                 VStack {
-                    Text("Score: \(currentScore)")
-                        .font(.headline)
-                    Text("Word count: \(wordCount)")
-                        .font(.headline)
-                }
-                
-                TextField("Enter your word", text: $newWord, onCommit: addNewWord)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .autocapitalization(.none)
-                    .padding()
-                    .disableAutocorrection(true)
-                
-                
-                List(usedWords, id: \.self) { word in
-                    HStack {
-                        Image(systemName: "\(word.count).circle")
-                        Text(word)
+                    VStack {
+                        Text("Score: \(self.currentScore)")
+                            .font(.headline)
+                        Text("Word count: \(self.wordCount)")
+                            .font(.headline)
                     }
-                    .accessibilityElement(children: .ignore)
-                    .accessibility(label: Text("\(word), \(word.count) letters"))
+                    
+                    TextField("Enter your word", text: self.$newWord, onCommit: self.addNewWord)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .autocapitalization(.none)
+                        .padding()
+                        .disableAutocorrection(true)
+                    
+                    
+                    List(self.usedWords, id: \.self) { word in
+                        HStack {
+                            Image(systemName: "\(word.count).circle")
+                            Text(word)
+                        }
+                        .accessibilityElement(children: .ignore)
+                        .accessibility(label: Text("\(word), \(word.count) letters"))
+                    }
+                    .offset(x: 5.0 * CGFloat(self.wordCount), y: 0.0)
                 }
-            }
-            .navigationBarTitle(rootWord)
-            .onAppear(perform: startGame)
-            .alert(isPresented: $showingError) {
-                Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+                .navigationBarTitle(self.rootWord)
+                .onAppear(perform: self.startGame)
+                .alert(isPresented: self.$showingError) {
+                    Alert(title: Text(self.errorTitle), message: Text(self.errorMessage), dismissButton: .default(Text("OK")))
+                }
             }
         }
     }
