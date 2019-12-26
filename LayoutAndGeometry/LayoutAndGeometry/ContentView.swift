@@ -1,38 +1,26 @@
 import SwiftUI
 
-extension VerticalAlignment {
-    struct MidAccountAndName: AlignmentID {
-        static func defaultValue(in d: ViewDimensions) -> CGFloat {
-            d[.top]
-        }
-    }
-    
-    static let midAccountAndName = VerticalAlignment(MidAccountAndName.self)
-}
-
 struct ContentView: View {
+    let colors: [Color] = [.red, .green, .blue, .orange, .pink, .purple, .yellow]
+
     var body: some View {
-        HStack {
-            VStack {
-                Text("@just_frew_it")
-                    .alignmentGuide(.midAccountAndName) { d in d[VerticalAlignment.center] }
-                Image("background")
-                    .resizable()
-                    .frame(width: 64, height: 64)
+        GeometryReader { fullView in
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(0..<50) { index in
+                        GeometryReader { geo in
+                            Rectangle()
+                                .fill(self.colors[index % 7])
+                                .frame(height: 150)
+                                .rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - fullView.size.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
+                        }
+                        .frame(width: 150)
+                    }
+                }
+                .padding(.horizontal, ((fullView.size.width - 150) / 2))
             }
-            
-            VStack {
-                Text("Full name:")
-                Text("ZACHARY FREW")
-                    .alignmentGuide(.midAccountAndName) { d in d[VerticalAlignment.center] }
-                    .font(.largeTitle)
-            }
-            
-            VStack {
-                Text("Finn")
-                    .alignmentGuide(.midAccountAndName) { d in d[VerticalAlignment.center] }
-            } 
         }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
