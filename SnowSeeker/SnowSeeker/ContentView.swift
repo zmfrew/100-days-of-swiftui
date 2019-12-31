@@ -4,10 +4,10 @@ struct ContentView: View {
     
     @ObservedObject var favorites = Favorites()
     @State private var showingFilterView = false
-    @State private var currentFilter: Filter = .none
+    @State private var currentSortType: SortType = .none
     let resorts: [Resort] = Bundle.main.decode("resorts.json")
     var filteredResorts: [Resort] {
-        switch currentFilter {
+        switch currentSortType {
         case .none:
             return resorts
         case .alphabetical:
@@ -58,7 +58,7 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $showingFilterView) {
-                FilterView(currentFilter: self.$currentFilter)
+                SortView(currentSortType: self.$currentSortType)
             }
             .navigationBarTitle("Resorts")
             

@@ -1,4 +1,4 @@
-enum Filter: String {
+enum SortType: String {
     case none, alphabetical, country
     
     
