@@ -1,12 +1,34 @@
 import SwiftUI
 
-struct ContentView: View {
+enum FilterType: String {
+    case country, none, price, size
     
+    init(_ num: Int) {
+        switch num {
+        case 1:
+            self = .country
+        case 2:
+            self = .price
+        case 3:
+            self = .size
+        default:
+            self = .none
+        }
+    }
+    
+    static var allCases = ["none", "country", "price", "size"]
+    var displayName: String { rawValue }
+}
+
+struct ContentView: View {
+    @State private var currentFilterType: FilterType = .none
+    @State private var currentSortType: SortType = .none
     @ObservedObject var favorites = Favorites()
     @State private var showingFilterView = false
-    @State private var currentSortType: SortType = .none
+    @State private var showingSortView = false
+    
     let resorts: [Resort] = Bundle.main.decode("resorts.json")
-    var filteredResorts: [Resort] {
+    var sortedResorts: [Resort] {
         switch currentSortType {
         case .none:
             return resorts
@@ -21,12 +43,18 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 Button(action: {
+                    self.showingSortView = true
+                }) {
+                    Text("Sort")
+                }
+                
+                Button(action: {
                     self.showingFilterView = true
                 }) {
                     Text("Filter")
                 }
                 
-                List(filteredResorts) { resort in
+                List(sortedResorts) { resort in
                     NavigationLink(destination: ResortView(resort: resort)) {
                         Image(resort.country)
                             .resizable()
@@ -56,8 +84,11 @@ struct ContentView: View {
                         }
                     }
                 }
+                .sheet(isPresented: $showingFilterView) {
+                    FilterView(currentFilterType: self.$currentFilterType)
+                }
             }
-            .sheet(isPresented: $showingFilterView) {
+            .sheet(isPresented: $showingSortView) {
                 SortView(currentSortType: self.$currentSortType)
             }
             .navigationBarTitle("Resorts")
