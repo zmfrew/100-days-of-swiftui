@@ -5,8 +5,12 @@ final class Favorites: ObservableObject {
     private let saveKey = "Favorites"
     
     init() {
-        // load our saved data
-        self.resorts = []
+        if let data = UserDefaults.standard.object(forKey: saveKey) as? Data,
+            let resorts = try? JSONDecoder().decode(Set<String>.self, from: data) {
+            self.resorts = resorts
+        } else {
+            self.resorts = []
+        }
     }
 
     func contains(_ resort: Resort) -> Bool {
@@ -26,6 +30,7 @@ final class Favorites: ObservableObject {
     }
 
     func save() {
-        // write out our data
+        let data = try? JSONEncoder().encode(resorts)
+        UserDefaults.standard.set(data, forKey: saveKey)
     }
 }
