@@ -21,7 +21,7 @@ enum FilterType: String {
 }
 
 struct ContentView: View {
-    @State private var currentFilterType: FilterType = .none
+    @State private var currentFilter = ""
     @State private var currentSortType: SortType = .none
     @ObservedObject var favorites = Favorites()
     @State private var showingFilterView = false
@@ -39,22 +39,25 @@ struct ContentView: View {
         }
     }
     
+    var filteredResorts: [Resort] {
+        guard !currentFilter.isEmpty else { return sortedResorts }
+        
+        let criteria = currentFilter.lowercased()
+        return sortedResorts.filter { $0.country.lowercased().contains(criteria) || $0.size == Int(criteria) || $0.price == Int(criteria) }
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
+                TextField("Search for a country, size of resort, or price", text: $currentFilter)
+                
                 Button(action: {
                     self.showingSortView = true
                 }) {
                     Text("Sort")
                 }
                 
-                Button(action: {
-                    self.showingFilterView = true
-                }) {
-                    Text("Filter")
-                }
-                
-                List(sortedResorts) { resort in
+                List(filteredResorts) { resort in
                     NavigationLink(destination: ResortView(resort: resort)) {
                         Image(resort.country)
                             .resizable()
@@ -83,9 +86,6 @@ struct ContentView: View {
                                 .foregroundColor(Color.red)
                         }
                     }
-                }
-                .sheet(isPresented: $showingFilterView) {
-                    FilterView(currentFilterType: self.$currentFilterType)
                 }
             }
             .sheet(isPresented: $showingSortView) {
